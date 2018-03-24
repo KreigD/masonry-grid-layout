@@ -25,6 +25,12 @@
   opacity: .8;
 }
 
+.col h2 {
+  font-weight: 900;
+  color: #fff;
+  text-shadow: 0 0 20px rgba(0, 0, 0, .8);
+}
+
 .grid-1 {
   width: 50%;
 }
@@ -48,7 +54,11 @@
   width: 50%;
 }
 
-.grid-8 {
+.grid-5 img {
+  object-position: right;
+}
+
+.grid-7 {
   width: 50%;
 }
 
@@ -73,10 +83,35 @@
   .grid-5 {
     grid-column-end: span 2;
   }
-  .grid-8 {
+  .grid-7 {
     grid-column-end: span 2;
   }
 }
+
+/* Media queries for other screen widths */
+@media screen and (max-width:450px) {
+  .col {
+    grid-row-end: unset;
+    grid-column-end: unset;
+    height: 250px;
+  }
+  .grid-area {
+    display: flex;
+    flex-direction: column;
+  }
+  .grid-3 {
+    order: -1;
+    height: 500px;
+  }
+}
+
+@media screen and (max-width:768px) {
+  .grid-2 {
+    display: none;
+  }
+}
+
+/************ Hover effect styles *************/
 
 figure {
   position: relative;
@@ -130,9 +165,22 @@ figure p {
   margin: 0;
 }
 
+figure button.rww_grid_button {
+  background-color: transparent;
+  border: 2px solid #fff;
+  border-radius: 5px;
+  margin: 0 auto;
+  padding: .5rem;
+  font-weight: bold;
+  font-size: smaller;
+  color: #fff;
+  text-transform: uppercase;
+  transition: all .3s;
+}
+
 figure p {
   letter-spacing: 1px;
-  font-size: 68.5%;
+  font-size: smaller;
 }
 
 figure figcaption::before {
@@ -153,19 +201,31 @@ figure h2 {
   left: 0;
   width: 100%;
   color: #484c61;
-  transition: transform 0.35s, color 0.35s;
+  transition: all 0.35s;
   transform: translate3d(0, -50%, 0);
 }
 
 figure figcaption::before,
-figure p {
-  transition: opacity 0.35s, transform 0.35s;
+figure p,
+figure .grid-button-wrapper {
+  transition: all 0.35s;
+}
+
+figure .grid-button-wrapper {
+  position: absolute;
+  bottom: 35%;
+  left: 0;
+  right: 0;
+  width: 100%;
+  opacity: 0;
+  transform: translate3d(0, 20px, 0);
 }
 
 figure p {
   position: absolute;
-  bottom: 0;
+  bottom: 10px;
   left: 0;
+  right: 0;
   padding-bottom: 3rem;
   width: 100%;
   opacity: 0;
@@ -173,25 +233,14 @@ figure p {
 }
 
 figure:hover h2 {
+  background: none;
   color: #fff;
   transform: translate3d(0, -50%, 0) translate3d(0, -40px, 0);
 }
 
 figure:hover figcaption::before,
-figure:hover p {
+figure:hover p,
+figure:hover .grid-button-wrapper {
   opacity: 1;
   transform: translate3d(0, 0, 0);
-}
-
-@media screen and (max-width:450px) {
-  .col {
-    grid-row-end: unset;
-    grid-column-end: unset;
-  }
-}
-
-@media screen and (max-width:768px) {
-  .grid-2 {
-    display: none;
-  }
 }
